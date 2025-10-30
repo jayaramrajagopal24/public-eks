@@ -1,20 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: guestbook-ui
+  labels:
+    app.kubernetes.io/name: public-eks
+    app.kubernetes.io/instance: public-eks-instance
+    app.kubernetes.io/version: '1.0.0'
+    app.kubernetes.io/managed-by: kubectl
+  name: public-eks-deployment
 spec:
   replicas: 3
-  revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: guestbook-ui
+      app: public-eks
   template:
     metadata:
       labels:
-        app: guestbook-ui
+        app: public-eks
     spec:
       containers:
-        - image: gcr.io/google-samples/gb-frontend:v5
-          name: guestbook-ui
+        - image: 576282838840.dkr.ecr.us-east-1.amazonaws.com/cicd-eks1:latest
+          imagePullPolicy: Always
+          name: public-eks
           ports:
-            - containerPort: 80
+            - containerPort: 3000
