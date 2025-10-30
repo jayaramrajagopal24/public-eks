@@ -18,7 +18,7 @@ spec:
         app: public-eks
     spec:
       containers:
-        - image: 576282838840.dkr.ecr.us-east-1.amazonaws.com/cicd-eks1:latest
+        - image: public.ecr.aws/h0e4u8p7/public-eks:latest
           imagePullPolicy: Always
           name: public-eks
           ports:
